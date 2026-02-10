@@ -1,0 +1,185 @@
+.section {
+    padding: 2rem 0 4rem;
+    background-color: hsl(var(--background));
+    /* Clean background outside the card */
+}
+
+/* The Main Hero Card */
+.heroCard {
+    background:
+        radial-gradient(circle at 0% 0%, hsl(240, 50%, 90%) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, hsl(190, 50%, 85%) 0%, transparent 50%),
+        linear-gradient(120deg, hsl(215, 80%, 95%), hsl(200, 70%, 92%));
+    border-radius: 2.5rem;
+    /* Large rounded corners like Embr Wave */
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    min-height: 600px;
+    justify-content: center;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 992px) {
+    .heroCard {
+        flex-direction: row;
+        align-items: center;
+        padding: 4rem 5rem;
+        gap: 4rem;
+    }
+}
+
+.content {
+    flex: 1;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: hsl(var(--primary));
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.heading {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    color: hsl(var(--text-heading));
+    font-weight: 800;
+    /* Serif-like weight */
+    letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+    .heading {
+        font-size: 3.5rem;
+    }
+}
+
+.subheading {
+    font-size: 1.125rem;
+    color: hsl(var(--text-body));
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 45ch;
+}
+
+.actions {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Visual Side */
+.visualContainer {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.visual {
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 4/5;
+    /* Phone/Device aspect ratio */
+    background: white;
+    border-radius: 2rem;
+    /* Rounded device/interface look */
+    box-shadow:
+        0 25px 50px -12px rgba(50, 50, 93, 0.25),
+        0 8px 16px -8px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    transform: rotateY(-10deg) rotateX(2deg);
+    transition: transform 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.visual:hover {
+    transform: rotateY(0) rotateX(0);
+}
+
+.visualContent {
+    flex: 1;
+    background: hsl(var(--surface-alt));
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mock Interface Circles */
+.circle1 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsl(var(--primary)/0.2), transparent);
+    top: -50px;
+    right: -50px;
+}
+
+.circle2 {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsl(var(--secondary)/0.2), transparent);
+    bottom: 20%;
+    left: -20px;
+}
+
+.floatingCheck {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+/* Stats underneath */
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.stat {
+    display: flex;
+    direction: column;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .stats {
+        justify-content: flex-start;
+        padding-left: 2rem;
+    }
+}

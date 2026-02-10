@@ -1,0 +1,96 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Define a single arm (a chevron shape filled with lines) -->
+    <g id="hatched-arm">
+      <!-- We use a mask or clip path to shape the lines -->
+      <path id="arm-shape" d="M100 100 L100 20 L160 50 L140 100 Z" fill="none" />
+      
+      <!-- Hatching Lines -->
+      <g stroke="currentColor" stroke-width="2">
+         <!-- Simulated parallel lines creating the volume -->
+         <line x1="100" y1="20" x2="100" y2="100" />
+         <line x1="105" y1="22.5" x2="105" y2="100" />
+         <line x1="110" y1="25" x2="110" y2="100" />
+         <line x1="115" y1="27.5" x2="115" y2="100" />
+         <line x1="120" y1="30" x2="120" y2="100" />
+         <line x1="125" y1="32.5" x2="125" y2="100" />
+         <line x1="130" y1="35" x2="130" y2="100" />
+         <line x1="135" y1="37.5" x2="135" y2="100" />
+         <line x1="140" y1="40" x2="140" y2="100" />
+         <line x1="145" y1="42.5" x2="145" y2="92" />
+         <line x1="150" y1="45" x2="150" y2="85" />
+         <line x1="155" y1="47.5" x2="155" y2="78" />
+         <line x1="160" y1="50" x2="160" y2="70" />
+      </g>
+    </g>
+  </defs>
+
+  <!-- Rotate the arm 3 times around the center (100,100) -->
+  <g transform="translate(100,100)">
+    <!-- Arm 1 (Up-Right) -->
+    <g transform="rotate(0) translate(-100,-100)">
+        <!-- Custom Path mimicking the reference accurately -->
+        <!-- The reference is 3 V-shapes. Let's draw lines directly. -->
+        <g stroke="black" stroke-width="3" stroke-linecap="butt">
+            <!-- Top Wing -->
+            <path d="M100 100 L100 40" />
+            <path d="M105 100 L105 45" />
+            <path d="M110 100 L110 50" />
+            <path d="M115 100 L115 55" />
+            <path d="M120 100 L120 60" />
+            <!-- Angle turn -->
+            <path d="M100 40 L130 55" /> 
+            <!-- This is getting complex to hand-code perfectly matching the optical illusion -->
+            <!-- Let's use a simplified geometric abstraction that looks very close -->
+        </g>
+    </g>
+  </g>
+  
+  <!-- RETRYING WITH CLEANER GEOMETRY -->
+  <g transform="translate(100,100)">
+     <!-- We create 3 groups of lines rotated 120deg -->
+     
+     <!-- Group 1 -->
+     <g transform="rotate(0)">
+        <path d="M0 0 L0 -80" stroke="black" stroke-width="4" />
+        <path d="M10 10 L10 -70" stroke="black" stroke-width="3" />
+        <path d="M20 20 L20 -60" stroke="black" stroke-width="3" />
+        <path d="M30 30 L30 -50" stroke="black" stroke-width="2" />
+        <path d="M40 40 L40 -40" stroke="black" stroke-width="2" />
+        <path d="M50 50 L50 -30" stroke="black" stroke-width="1" />
+        
+        <!-- The "Fold" effect -->
+        <path d="M0 -80 L40 -60" stroke="black" stroke-width="4" />
+        <path d="M10 -70 L45 -55" stroke="black" stroke-width="3" />
+        <path d="M20 -60 L50 -50" stroke="black" stroke-width="3" />
+     </g>
+
+     <!-- Group 2 -->
+     <g transform="rotate(120)">
+        <path d="M0 0 L0 -80" stroke="black" stroke-width="4" />
+        <path d="M10 10 L10 -70" stroke="black" stroke-width="3" />
+        <path d="M20 20 L20 -60" stroke="black" stroke-width="3" />
+        <path d="M30 30 L30 -50" stroke="black" stroke-width="2" />
+        <path d="M40 40 L40 -40" stroke="black" stroke-width="2" />
+        <path d="M50 50 L50 -30" stroke="black" stroke-width="1" />
+        
+        <path d="M0 -80 L40 -60" stroke="black" stroke-width="4" />
+        <path d="M10 -70 L45 -55" stroke="black" stroke-width="3" />
+        <path d="M20 -60 L50 -50" stroke="black" stroke-width="3" />
+     </g>
+
+     <!-- Group 3 -->
+     <g transform="rotate(240)">
+        <path d="M0 0 L0 -80" stroke="black" stroke-width="4" />
+        <path d="M10 10 L10 -70" stroke="black" stroke-width="3" />
+        <path d="M20 20 L20 -60" stroke="black" stroke-width="3" />
+        <path d="M30 30 L30 -50" stroke="black" stroke-width="2" />
+        <path d="M40 40 L40 -40" stroke="black" stroke-width="2" />
+        <path d="M50 50 L50 -30" stroke="black" stroke-width="1" />
+        
+        <path d="M0 -80 L40 -60" stroke="black" stroke-width="4" />
+        <path d="M10 -70 L45 -55" stroke="black" stroke-width="3" />
+        <path d="M20 -60 L50 -50" stroke="black" stroke-width="3" />
+     </g>
+  </g>
+</svg>
