@@ -4,7 +4,7 @@ import { cn } from "@/lib/cn";
 import Link from "next/link";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: "primary" | "secondary" | "outline" | "ghost";
+    variant?: "primary" | "secondary" | "outline" | "ghost" | "dark";
     size?: "default" | "sm" | "lg";
     fullWidth?: boolean;
     href?: string;

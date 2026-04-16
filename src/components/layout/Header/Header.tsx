@@ -5,7 +5,6 @@ import styles from "./Header.module.css";
 import { Button } from "@/components/ui/Button/Button";
 import Link from "next/link";
 import Image from "next/image";
-import { ShieldCheck, Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const navigation = [
@@ -23,20 +22,14 @@ export function Header() {
         <>
             <header className={styles.header}>
                 <div className={styles.inner}>
+                    {/* Logo */}
                     <Link href="/" className={styles.logo}>
-                        <div className="relative w-8 h-8 md:w-10 md:h-10">
-                            <Image
-                                src="/images/logo-v2.png"
-                                alt="Studio Berni Logo"
-                                fill
-                                className="object-contain"
-                            />
-                        </div>
-                        <div className="flex flex-col leading-tight">
-                            <span className="md:hidden">Studio Berni</span>
-                            <span className="hidden md:inline">Studio Tecnico</span>
-                            <span className="hidden md:inline">Berni Romeo</span>
-                        </div>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/images/logo-signature.svg"
+                            alt="Romeo Berni"
+                            className="h-9 md:h-10 w-auto"
+                        />
                     </Link>
 
                     {/* Desktop Nav */}
@@ -48,9 +41,10 @@ export function Header() {
                         ))}
                     </nav>
 
+                    {/* Actions */}
                     <div className={styles.actions}>
                         <Button size="sm" href="/valutazione">
-                            Richiedi Valutazione
+                            Prenota
                         </Button>
 
                         <button
@@ -58,15 +52,17 @@ export function Header() {
                             onClick={() => setIsOpen(!isOpen)}
                             aria-label="Toggle menu"
                         >
-                            {isOpen ? <X size={24} /> : <Menu size={24} />}
+                            <span className="material-symbols-outlined" style={{ fontSize: 24 }}>
+                                {isOpen ? "close" : "menu"}
+                            </span>
                         </button>
                     </div>
                 </div>
             </header>
 
-            {/* Mobile Menu - Detached for Pill Layout */}
+            {/* Mobile Menu */}
             <div className={cn(styles.mobileMenu, isOpen && styles.open)}>
-                <nav className="flex flex-col gap-2">
+                <nav className="flex flex-col gap-1">
                     {navigation.map((item) => (
                         <Link
                             key={item.name}
@@ -77,9 +73,9 @@ export function Header() {
                             {item.name}
                         </Link>
                     ))}
-                    <div className="mt-4 flex flex-col gap-3">
-                        <Button variant="outline" className="w-full justify-start" href="/contatti">
-                            Prenota Call 15 min
+                    <div className="mt-6 pt-6 border-t border-outline-variant/30">
+                        <Button variant="primary" fullWidth href="/valutazione">
+                            Prenota Valutazione
                         </Button>
                     </div>
                 </nav>

@@ -2,59 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Colors - Primary (Action) */
-  --primary: 220 90% 56%;
-  /* Bright Soft Blue (Embr-like) */
-  --primary-foreground: 0 0% 100%;
-
-  /* Colors - Secondary (Trust) */
-  --secondary: 190 90% 50%;
-  /* Cyan/Teal */
-  --secondary-foreground: 0 0% 100%;
-
-  /* Colors - Surface/Background */
-  --background: 220 30% 98%;
-  /* Very light blue-grey tint */
-  --foreground: 220 40% 15%;
-
-  --surface: 0 0% 100%;
-  --surface-alt: 210 30% 96%;
-  --glass-border: 0 0% 100%;
-
-  /* Colors - Gradients (Embr Style) */
-  --gradient-brand: linear-gradient(135deg, hsl(220 90% 56%), hsl(190 90% 50%));
-  --gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
-
-  /* Colors - Text */
-  --text-heading: 220 50% 10%;
-  --text-body: 220 20% 40%;
-  --text-muted: 220 10% 60%;
-
-  /* Colors - Feedback */
-  --success: 150 60% 45%;
-  --error: 10 80% 55%;
-
-  /* Spacing & Radius */
-  --radius: 1.5rem;
-  /* Very rounded (Embr Style) */
-  --header-height: 4.5rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 220 40% 10%;
-    --foreground: 0 0% 98%;
-    --surface: 220 30% 15%;
-    --surface-alt: 220 30% 12%;
-    --glass-border: 220 30% 30%;
-    --text-heading: 0 0% 100%;
-    --text-body: 220 10% 80%;
-    --text-muted: 220 10% 60%;
-
-    --gradient-brand: linear-gradient(135deg, hsl(220 90% 60%), hsl(190 90% 50%));
-  }
-}
+/* ═══════════════════════════════════════════════════
+   CLINICAL EDITORIAL — Design System Foundation
+   ═══════════════════════════════════════════════════ */
 
 * {
   box-sizing: border-box;
@@ -66,31 +16,22 @@ html,
 body {
   max-width: 100vw;
   scroll-behavior: smooth;
-  /* overflow-x: hidden; - Removed to prevent Sticky issues */
 }
 
 body {
-  /* overflow-x: hidden; - Removed to prevent Sticky issues */
-}
-
-body {
-  color: hsl(var(--foreground));
-  background: hsl(var(--background));
-  font-family: var(--font-inter), sans-serif;
+  color: #1a1c1b;
+  background: #f9f9f7;
+  font-family: var(--font-inter), "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: hsl(var(--text-heading));
-  font-weight: 700;
+/* ── Typography Defaults ───────────────────────────── */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-newsreader), "Newsreader", serif;
+  color: #1a1c1b;
   line-height: 1.1;
-  /* Tighter headings */
   letter-spacing: -0.02em;
 }
 
@@ -99,65 +40,80 @@ a {
   text-decoration: none;
 }
 
-/* Premium Utilities */
-.glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+::selection {
+  background-color: #A8DADC;
+  color: #1A1C1B;
 }
 
-.glass-panel {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
-  backdrop-filter: blur(10px);
-  border: 1px solid hsl(var(--glass-border));
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+/* ── Material Symbols Configuration ────────────────── */
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 100, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
 }
 
-/* Smooth Fade In Animation */
+/* ── Glassmorphism ─────────────────────────────────── */
+
+.glass-nav {
+  background: rgba(249, 249, 247, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ── Editorial Easing ──────────────────────────────── */
+
+.ease-editorial {
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ── Scrollbar Hiding ──────────────────────────────── */
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Marquee Pause on Hover ────────────────────────── */
+
+.marquee-container:hover .animate-marquee,
+.marquee-container:hover .animate-marquee-reverse {
+  animation-play-state: paused;
+}
+
+/* ── Ambient Shadow ────────────────────────────────── */
+
+.shadow-editorial {
+  box-shadow: 0px 20px 40px rgba(26, 28, 27, 0.06);
+}
+
+/* ── Fade-In Animation ─────────────────────────────── */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(16px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.animate-in {
-  animation: fadeIn 0.6s ease-out forwards;
+.animate-fade-in {
+  animation: fadeIn 0.7s ease-out forwards;
 }
 
-/* Utilities for HSL variables */
-.bg-primary {
-  background-color: hsl(var(--primary));
-}
-
-.text-primary {
-  color: hsl(var(--primary));
-}
-
-.bg-surface {
-  background-color: hsl(var(--surface));
-}
-
-.bg-surface-alt {
-  background-color: hsl(var(--surface-alt));
-}
-
-.text-body {
-  color: hsl(var(--text-body));
-}
+/* ── Container Utility ─────────────────────────────── */
 
 .container {
   width: 100%;
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  /* Increased padding */
-  padding-right: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }

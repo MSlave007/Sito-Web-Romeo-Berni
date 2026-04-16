@@ -1,57 +1,165 @@
-import React from "react";
-import { ArrowRight, Microscope, ShieldCheck, ClipboardCheck } from "lucide-react";
-import Link from "next/link";
-import { cn } from "@/lib/cn";
+"use client";
 
-const services = [
+import React from "react";
+import Link from "next/link";
+
+/* ────────────────────────────────────────────────────────────── */
+/*  Service data — split into two rows                            */
+/* ────────────────────────────────────────────────────────────── */
+const rowOne = [
     {
-        icon: Microscope,
         title: "Esperto Radioprotezione",
-        desc: "Incarico di Esperto di Radioprotezione e Controlli di Qualità su macchine e sorgenti radioattive. Gestione completa della sorveglianza fisica.",
+        desc: "Incarico di Esperto di Radioprotezione e Controlli di Qualità su macchine e sorgenti radioattive.",
         href: "/servizi/radioprotezione",
-        color: "text-blue-500 bg-blue-50"
+        icon: "radiology",
+        image: "/images/svc-radioprotezione.png",
     },
     {
-        icon: ShieldCheck,
-        title: "Sicurezza Laser",
-        desc: "Consulenza come Esperto Sicurezza Laser (TSL) per centri estetici e medici. Valutazione del rischio e verifica dei dispositivi in uso.",
-        href: "/servizi/sicurezza-laser",
-        color: "text-teal-500 bg-teal-50"
+        title: "Controlli Qualità",
+        desc: "Programmi di controllo della qualità per garantire precisione diagnostica continuativa.",
+        href: "/servizi/controlli-qualita",
+        icon: "monitoring",
+        image: "/images/svc-controlli-qualita.png",
     },
     {
-        icon: ClipboardCheck,
-        title: "Verifiche Impianti",
-        desc: "Verifiche periodiche su impianti elettrici e apparecchiature elettromedicali. Progettazione impianti e collaudi per l'autorizzazione sanitaria.",
-        href: "/servizi/impianti",
-        color: "text-purple-500 bg-purple-50"
-    }
+        title: "Dosimetria Clinica",
+        desc: "Servizi avanzati di dosimetria per ottimizzare la dose radiante e proteggere pazienti e operatori.",
+        href: "/servizi/dosimetria",
+        icon: "science",
+        image: "/images/svc-dosimetria.png",
+    },
+    {
+        title: "Formazione",
+        desc: "Corsi di radioprotezione e aggiornamento professionale per tecnici e medici specialisti.",
+        href: "/servizi/formazione",
+        icon: "school",
+        image: "/images/svc-formazione.png",
+    },
 ];
 
+const rowTwo = [
+    {
+        title: "Sicurezza Laser",
+        desc: "Consulenza come Esperto Sicurezza Laser (TSL) per centri estetici e medici.",
+        href: "/servizi/sicurezza-laser",
+        icon: "bolt",
+        image: "/images/svc-sicurezza-laser.png",
+    },
+    {
+        title: "Verifiche Impianti",
+        desc: "Verifiche periodiche su impianti elettrici e apparecchiature elettromedicali.",
+        href: "/servizi/impianti",
+        icon: "verified",
+        image: "/images/svc-verifiche-impianti.png",
+    },
+    {
+        title: "Consulenza Normativa",
+        desc: "Supporto completo per la conformità al D.Lgs 101/2020 e alle direttive europee.",
+        href: "/servizi/consulenza-normativa",
+        icon: "gavel",
+        image: "/images/svc-consulenza-normativa.png",
+    },
+    {
+        title: "Audit & Ispezioni",
+        desc: "Preparazione e affiancamento per ispezioni ASL, INAIL e audit di certificazione.",
+        href: "/servizi/audit",
+        icon: "assignment_turned_in",
+        image: "/images/svc-audit-ispezioni.png",
+    },
+];
+
+/* ────────────────────────────────────────────────────────────── */
+/*  ServiceCard (compact, editorial)                              */
+/* ────────────────────────────────────────────────────────────── */
+type Service = typeof rowOne[0];
+
+const ServiceCard = ({ service }: { service: Service }) => (
+    <Link
+        href={service.href}
+        className="group flex-shrink-0 w-[380px] md:w-[440px] bg-surface-container-lowest rounded-2xl p-4 flex items-start gap-5 hover:shadow-editorial transition-all duration-500"
+    >
+        {/* Thumbnail */}
+        <div className="w-24 h-24 md:w-28 md:h-28 rounded-xl overflow-hidden bg-surface-container-low shrink-0">
+            <img
+                src={service.image}
+                alt={service.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+        </div>
+
+        {/* Text */}
+        <div className="flex-1 min-w-0 py-1">
+            <h3 className="font-headline text-lg md:text-xl text-on-surface mb-1.5 leading-snug group-hover:text-secondary transition-colors">
+                {service.title}
+            </h3>
+            <p className="text-sm text-on-surface-variant leading-relaxed line-clamp-3">
+                {service.desc}
+            </p>
+        </div>
+    </Link>
+);
+
+/* ────────────────────────────────────────────────────────────── */
+/*  Marquee Row – direction prop controls scroll direction        */
+/* ────────────────────────────────────────────────────────────── */
+const MarqueeRow = ({
+    services,
+    direction = "left",
+}: {
+    services: Service[];
+    direction?: "left" | "right";
+}) => {
+    const animationClass =
+        direction === "left" ? "animate-marquee" : "animate-marquee-reverse";
+
+    return (
+        <div className="marquee-container relative overflow-hidden">
+            <div className={`flex gap-5 w-max ${animationClass}`}>
+                {/* Set 1 */}
+                {services.map((service, i) => (
+                    <ServiceCard key={`a-${i}`} service={service} />
+                ))}
+                {/* Duplicate for seamless loop */}
+                {services.map((service, i) => (
+                    <ServiceCard key={`b-${i}`} service={service} />
+                ))}
+            </div>
+        </div>
+    );
+};
+
+/* ────────────────────────────────────────────────────────────── */
+/*  Main Component                                                */
+/* ────────────────────────────────────────────────────────────── */
 export function ServicesGrid() {
     return (
-        <section className="py-20 bg-gray-50/50">
-            <div className="container">
-                <div className="text-center max-w-2xl mx-auto mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-heading">Servizi Integrati</h2>
-                    <p className="text-xl text-muted">Un approccio tecnico e legale per coprire ogni esigenza del tuo studio.</p>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-8">
-                    {services.map((service, i) => (
-                        <Link key={i} href={service.href} className="group bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-start">
-                            <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors", service.color)}>
-                                <service.icon size={28} strokeWidth={2} />
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4 text-heading group-hover:text-primary transition-colors">{service.title}</h3>
-                            <p className="text-body leading-relaxed mb-8 flex-grow">{service.desc}</p>
-
-                            <div className="flex items-center gap-2 font-bold text-sm text-heading group-hover:text-primary transition-colors">
-                                Scopri di più <ArrowRight size={16} />
-                            </div>
-                        </Link>
-                    ))}
+        <section className="py-20 md:py-28 overflow-hidden">
+            {/* Heading */}
+            <div className="container mb-14">
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                    <div>
+                        <span className="text-xs font-medium uppercase tracking-widest text-secondary mb-4 block">
+                            I Nostri Servizi
+                        </span>
+                        <h2 className="font-headline text-4xl md:text-5xl text-on-surface leading-tight">
+                            Servizi <span className="italic">Integrati</span>
+                        </h2>
+                    </div>
+                    <p className="text-on-surface-variant max-w-md leading-relaxed">
+                        Un approccio tecnico e legale per coprire ogni esigenza
+                        del tuo studio.
+                    </p>
                 </div>
             </div>
+
+            {/* Row 1 — scrolls left */}
+            <MarqueeRow services={rowOne} direction="left" />
+
+            {/* Spacer */}
+            <div className="h-5" />
+
+            {/* Row 2 — scrolls right */}
+            <MarqueeRow services={rowTwo} direction="right" />
         </section>
     );
 }

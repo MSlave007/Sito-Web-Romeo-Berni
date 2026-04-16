@@ -1,173 +1,205 @@
-"use client";
-
 import { Header } from "@/components/layout/Header/Header";
 import { Button } from "@/components/ui/Button/Button";
-import { ArrowRight, FileText, CheckCircle2, Microscope, LineChart, Award } from "lucide-react";
-import { useState, useEffect } from "react";
-import { cn } from "@/lib/cn";
 
 export default function MethodPage() {
-    const [activeStep, setActiveStep] = useState(0);
-
-    const steps = [
-        {
-            id: "01",
-            title: "Pianificazione",
-            subtitle: "Strategia & Analisi",
-            desc: "Analizziamo il tuo inventario e lo storico delle verifiche. Definiamo le priorità di intervento per minimizzare il fermo macchina e ottimizzare i tempi del tecnico.",
-            icon: LineChart,
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070",
-            stat: "100% Copertura"
-        },
-        {
-            id: "02",
-            title: "Verifica",
-            subtitle: "Intervento in Loco",
-            desc: "Eseguiamo le misurazioni con strumentazione certificata e tarata. Verifichiamo qualità del fascio, output e sicurezza elettrica secondo standard IEC.",
-            icon: Microscope,
-            image: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&q=80&w=2070",
-            stat: "ISO 9001"
-        },
-        {
-            id: "03",
-            title: "Certificazione",
-            subtitle: "Report & Validazione",
-            desc: "Consegniamo il fascicolo tecnico completo, validato dall'Esperto Qualificato. I documenti sono pronti per i controlli ASL e caricati sulla tua area riservata.",
-            icon: Award,
-            image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=2070",
-            stat: "Conforme 100%"
-        }
-    ];
-
-    // Intersection Observer to detect scroll position
-    useEffect(() => {
-        const handleScroll = () => {
-            const stepElements = document.querySelectorAll('.method-step');
-            stepElements.forEach((el, index) => {
-                const rect = el.getBoundingClientRect();
-                // Active when element is in the upper middle of viewport
-                if (rect.top >= 0 && rect.top <= window.innerHeight * 0.6) {
-                    setActiveStep(index);
-                }
-            });
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
-        <main className="min-h-screen bg-white">
+        <main className="min-h-screen bg-surface">
             <Header />
 
-            <section className="pt-32 pb-20 container">
-                <div className="max-w-4xl">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-                        Protocollo MedEval
-                    </div>
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-heading">
-                        Precisione in<br />ogni dettaglio.
+            {/* ═══════════════════════ Hero ═══════════════════════ */}
+            <section className="pt-36 pb-20 px-8">
+                <div className="max-w-6xl mx-auto">
+                    <h1 className="text-6xl md:text-[5.5rem] lg:text-[7rem] font-headline italic font-normal tracking-tight text-on-surface leading-[0.95] mb-8">
+                        Precisione<br />
+                        <span className="not-italic font-light">a Strati.</span>
                     </h1>
-                    <p className="text-xl text-body leading-relaxed max-w-2xl">
-                        Il nostro metodo è progettato per trasformare l'obbligo normativo in un processo fluido, trasparente e privo di imprevisti.
+                    <p className="text-base md:text-lg text-on-surface-variant leading-relaxed max-w-xl">
+                        Il nostro protocollo diagnostico è un processo iterativo di
+                        raffinamento. Scopriamo strato dopo strato i dati clinici per rivelare
+                        la verità essenziale sotto la superficie.
                     </p>
                 </div>
             </section>
 
-            <section className="container pb-40 relative">
-                <div className="grid lg:grid-cols-2 gap-20 items-start">
+            {/* ═══════════════════════ Steps ═══════════════════════ */}
+            <section className="pb-24 px-8">
+                <div className="max-w-6xl mx-auto flex flex-col gap-28">
 
-                    {/* Left Column: Scrollable Steps */}
-                    <div className="relative pt-10 pb-20">
-                        {/* Timeline Track - Moved inward for mobile safety */}
-                        <div className="absolute left-4 lg:left-8 top-12 bottom-0 w-px bg-gray-200"></div>
+                    {/* ──── Step 01 — Consultation ──── */}
+                    <div className="relative">
+                        {/* Decorative Number */}
+                        <span className="absolute -top-4 left-0 text-[8rem] md:text-[10rem] font-headline italic text-secondary/10 leading-none select-none pointer-events-none">
+                            01
+                        </span>
 
-                        <div className="space-y-40">
-                            {steps.map((step, i) => (
-                                <div
-                                    key={i}
-                                    className={cn(
-                                        "method-step relative pl-16 lg:pl-24 transition-all duration-500 ease-out",
-                                        activeStep === i ? "opacity-100 translate-x-0" : "opacity-30 translate-x-4 grayscale"
-                                    )}
-                                >
-                                    {/* Timeline Dot - Aligned with new track position */}
-                                    <div className={cn(
-                                        "absolute left-[11px] lg:left-[27px] top-3 w-3 h-3 rounded-full border-2 transition-all duration-500",
-                                        activeStep === i ? "bg-white border-primary scale-150 shadow-[0_0_0_4px_rgba(var(--primary),0.2)]" : "bg-gray-200 border-transparent"
-                                    )}></div>
-
-                                    <div className="flex flex-col gap-4">
-                                        <div className="flex items-center gap-4 text-primary font-bold uppercase tracking-wider text-xs">
-                                            <span className="px-3 py-1 rounded-full bg-primary/10">Fase {step.id}</span>
-                                            <div className="flex items-center gap-2">
-                                                <step.icon size={16} />
-                                                {step.subtitle}
-                                            </div>
-                                        </div>
-
-                                        <h3 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
-                                            {step.title}
-                                        </h3>
-
-                                        <p className="text-lg lg:text-xl text-gray-500 leading-relaxed max-w-md">
-                                            {step.desc}
-                                        </p>
-
-                                        <div className={cn(
-                                            "mt-6 flex items-center gap-3 text-sm font-semibold transition-all duration-500",
-                                            activeStep === i ? "text-primary translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-                                        )}>
-                                            <div className="h-px w-12 bg-primary"></div>
-                                            Approfondisci
-                                        </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start pt-8">
+                            {/* Text */}
+                            <div className="lg:col-span-5 relative z-10 pt-12">
+                                <h3 className="text-3xl md:text-4xl font-headline italic text-on-surface mb-5 leading-[1.1]">
+                                    Consulenza
+                                </h3>
+                                <p className="text-base text-on-surface-variant leading-relaxed mb-8 max-w-md">
+                                    Il percorso inizia con un&apos;analisi narrativa approfondita.
+                                    Ascoltiamo la storia clinica, le sfumature diagnostiche e
+                                    l&apos;esperienza del paziente per costruire lo strato fondamentale.
+                                </p>
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-3">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0" />
+                                        <span className="text-sm text-on-surface font-medium">Pre-Valutazione Specialistica</span>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Right Column: Sticky Visual */}
-                    <div className="hidden lg:block sticky top-32 h-[70vh] min-h-[500px] w-full bg-slate-100 rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100 box-border">
-                        {steps.map((step, i) => (
-                            <div
-                                key={i}
-                                className={cn(
-                                    "absolute inset-0 transition-all duration-700 ease-in-out",
-                                    activeStep === i ? "opacity-100 scale-100" : "opacity-0 scale-110"
-                                )}
-                            >
-                                <div
-                                    className="absolute inset-0 bg-cover bg-center"
-                                    style={{ backgroundImage: `url('${step.image}')` }}
-                                >
-                                    <div className="absolute inset-0 bg-slate-900/10 mix-blend-multiply"></div>
-                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
-                                </div>
-
-                                {/* Floating Stat Card - Bottom aligned */}
-                                <div className="absolute bottom-10 left-10 right-10">
-                                    <div className="bg-white/95 backdrop-blur-xl p-8 rounded-3xl shadow-xl border border-white/50 flex items-center justify-between gap-6 transform transition-all duration-500 hover:scale-[1.02]">
-                                        <div>
-                                            <p className="text-xs font-bold uppercase text-gray-400 mb-1 tracking-wide">Obiettivo Raggiunto</p>
-                                            <div className="text-3xl font-bold text-slate-900">
-                                                {step.stat}
-                                            </div>
-                                        </div>
-                                        <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                                            <CheckCircle2 size={28} />
-                                        </div>
+                                    <div className="flex items-center gap-3">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0" />
+                                        <span className="text-sm text-on-surface font-medium">Mappatura Dati Storici</span>
                                     </div>
                                 </div>
                             </div>
-                        ))}
+
+                            {/* Image */}
+                            <div className="lg:col-span-7">
+                                <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-on-surface relative">
+                                    <img
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIkUrbXPlAlP2ckXVuKobSIeDWiz1upl_4mMaFh1cjrh63UpEnAZTefLcq_nleOEjBkPAdIzQnxbTrataptVIU8f5AUFazczpjfdBXSdM0B0RIUU1E0tQCPoiqxbIGu5QSD_nAizZPNeC66gBNKzVRd5izmoVHJ8ggSZLmyjIlhIcjrZLN-tdHw4FDsRLV817_XOemhcmYY4PFZV7thyC0nLR7nes92O766jzjUXjFRBNETCT3ffMw3WlPS5WOuMSHpvcTLE3mjEo"
+                                        alt="Consulenza specialistica"
+                                        className="w-full h-full object-cover opacity-60"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* ──── Step 02 — Acquisition ──── */}
+                    <div className="relative">
+                        {/* Decorative Number */}
+                        <span className="absolute -top-4 right-0 text-[8rem] md:text-[10rem] font-headline italic text-secondary/10 leading-none select-none pointer-events-none">
+                            02
+                        </span>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-8">
+                            {/* Dark Feature Card */}
+                            <div className="lg:col-span-5 relative z-10">
+                                <div className="bg-on-surface text-surface rounded-2xl p-10 md:p-12">
+                                    <h3 className="text-4xl md:text-5xl font-headline italic text-surface leading-[1.05] mb-2">
+                                        Acquisizione
+                                    </h3>
+                                </div>
+                            </div>
+
+                            {/* Text + Spec */}
+                            <div className="lg:col-span-7 pt-4">
+                                <h4 className="text-2xl font-headline italic text-on-surface mb-4">Acquisizione</h4>
+                                <p className="text-base text-on-surface-variant leading-relaxed mb-8 max-w-lg">
+                                    Cattura tecnica ad alta fedeltà. Utilizziamo protocolli di imaging
+                                    all&apos;avanguardia per acquisire dati grezzi con precisione
+                                    chirurgica, assicurando che nessun dettaglio venga perso.
+                                </p>
+                                <div className="inline-block bg-surface-container-low rounded-xl px-6 py-4">
+                                    <p className="text-[11px] tracking-[0.15em] uppercase text-on-surface-variant mb-1 font-label">Specifica</p>
+                                    <p className="text-sm text-on-surface leading-relaxed">
+                                        Rendering volumetrico sub-millimetrico con riduzione del rumore multi-spettrale.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* ──── Step 03 — Analysis ──── */}
+                    <div className="relative">
+                        {/* Decorative Number */}
+                        <span className="absolute -top-4 left-0 text-[8rem] md:text-[10rem] font-headline italic text-secondary/10 leading-none select-none pointer-events-none">
+                            03
+                        </span>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start pt-8">
+                            {/* Text + Stats */}
+                            <div className="lg:col-span-6 relative z-10 pt-12">
+                                <h3 className="text-3xl md:text-4xl font-headline italic text-on-surface mb-5 leading-[1.1]">
+                                    Analisi
+                                </h3>
+                                <p className="text-base text-on-surface-variant leading-relaxed mb-8 max-w-md">
+                                    I dati diventano insight. Attraverso screening algoritmico e
+                                    curatela umana esperta, incrociamo i risultati per isolare anomalie
+                                    e verificare pattern fisiologici.
+                                </p>
+                                <div className="flex gap-4">
+                                    <div className="bg-surface-container-low rounded-xl px-6 py-5 text-center min-w-[100px]">
+                                        <p className="text-2xl font-headline text-on-surface mb-1">99.8%</p>
+                                        <p className="text-[10px] tracking-[0.15em] uppercase text-on-surface-variant font-label">Accuratezza</p>
+                                    </div>
+                                    <div className="bg-surface-container-low rounded-xl px-6 py-5 text-center min-w-[100px]">
+                                        <p className="text-2xl font-headline text-on-surface mb-1">1.2</p>
+                                        <p className="text-[10px] tracking-[0.15em] uppercase text-on-surface-variant font-label">Tempo Medio (h)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Image */}
+                            <div className="lg:col-span-6">
+                                <div className="aspect-square rounded-2xl overflow-hidden bg-surface-container-low">
+                                    <img
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjiUyfpJ5wK9DY_heffRNTkuqF1LLxSiAxafSaGft5rqYFv-6Aqq8IhpbAWMbhqwDncQKhh8wb3ZfTj0wmt8RpBUt7nJfym9awZwz4h3pENzWxEPgLbFu9clAFjj_OOc1gXXERVTs9SSKNKHQuNeoxtVcrmwZs39vPg2CafNQ26AZQbSCZi_dbWHAud5TNwa-Idv094XU5WbUGGA75nvkxrjm4B8KrCZTSIGACTjwsgGK0RyaoH3phaENy7hmRfJRm4CpKN_Odc5M"
+                                        alt="Analisi diagnostica"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* ──── Step 04 — Diagnosis (Full-Width Dark Card) ──── */}
+                    <div className="relative">
+                        <div className="bg-on-surface rounded-2xl overflow-hidden">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px]">
+                                {/* Text */}
+                                <div className="flex flex-col justify-center px-10 md:px-14 py-14">
+                                    <span className="material-symbols-outlined text-secondary text-2xl mb-6">target</span>
+                                    <h3 className="text-3xl md:text-4xl font-headline italic text-surface mb-5 leading-[1.1]">
+                                        Diagnosi
+                                    </h3>
+                                    <p className="text-base text-surface-dim leading-relaxed mb-10 max-w-md">
+                                        La distillazione finale. Una sintesi narrativa completa che fornisce
+                                        chiarezza clinica assoluta e un percorso definitivo. Precisione, realizzata.
+                                    </p>
+                                    <div>
+                                        <Button variant="primary" href="/contatti" size="sm">
+                                            Richiedi Consulenza
+                                            <span className="material-symbols-outlined text-sm ml-2">arrow_forward</span>
+                                        </Button>
+                                    </div>
+                                </div>
+
+                                {/* Image */}
+                                <div className="relative overflow-hidden hidden lg:block">
+                                    <img
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDercOqQScL9dn0HaPFqeaP_d-4xjUysoHurA7bYJiBOfVQmynaFxbZ8aM_y6WBM9liDLz9hy1Hu7q2nAlBl41DkU6XGqJV5no0dhKMrx02s0875yAPN2GAZlCtN856D2ABy9uDdXLfJ-XwHEVML3pkfUUgIPUSARRYgHhknWNvb801khFbg-9xeATtnyhB716NMAlt6TUZJHcmG-a81CMX6v8UWiZlxcGW_y3bdQInctSuKUIVLzC93QOztenJtr7nlvEQtdQa5KY"
+                                        alt="Diagnosi finale"
+                                        className="w-full h-full object-cover opacity-40 absolute inset-0"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </section>
 
-            {/* Bottom CTA */}
-
+            {/* ═══════════════════════ CTA ═══════════════════════ */}
+            <section className="py-32 px-8">
+                <div className="max-w-6xl mx-auto text-center">
+                    <h2 className="text-4xl md:text-6xl font-headline italic mb-6 leading-[1.05]">
+                        Sperimenta la Differenza<br />
+                        <span className="not-italic font-light">nella Cura.</span>
+                    </h2>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                        <Button variant="primary" href="/contatti">
+                            Prenota Appuntamento
+                        </Button>
+                        <Button variant="outline" href="/metodo">
+                            Il Nostro Approccio
+                        </Button>
+                    </div>
+                </div>
+            </section>
         </main>
     );
 }

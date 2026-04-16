@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Newsreader } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,14 +8,20 @@ const inter = Inter({
   display: "swap",
 });
 
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  display: "swap",
+  style: ["normal", "italic"],
+  weight: ["400", "600", "700"],
+});
+
 export const metadata: Metadata = {
-  title: "Studio Tecnico Berni Romeo | Radioprotezione e Sicurezza",
-  description: "Verifiche Rx, Apparecchi Elettromedicali, Autorizzazione Sanitaria e Sicurezza sul Lavoro a Parma.",
+  title: "Romeo Berni Radiologia | Eccellenza in Diagnostica per Immagini",
+  description: "Centro d'eccellenza per la diagnostica avanzata. Radiologia digitale, ecografia, senologia 3D e MOC DEXA a Parma. Precisione, tecnologia e cura del paziente.",
 };
 
 import { Footer } from "@/components/layout/Footer/Footer";
-
-// ... (existing imports)
 
 export default function RootLayout({
   children,
@@ -24,7 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it">
-      <body className={`${inter.variable}`} suppressHydrationWarning={true}>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className={`${inter.variable} ${newsreader.variable} font-body text-on-surface bg-surface antialiased`} suppressHydrationWarning={true}>
         {children}
         <Footer />
       </body>

@@ -1,141 +1,118 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Button } from "@/components/ui/Button/Button";
 
 export function Footer() {
     return (
-        <footer className="relative bg-white pt-20 pb-4 px-4 overflow-hidden">
+        <footer className="bg-[#1a1c1b] text-[#c0c8c8]">
 
-            {/* Main Headline Area */}
-            <div className="container max-w-7xl mx-auto mb-16 px-4">
-                <div className="grid lg:grid-cols-2 gap-12 items-end">
-                    <div>
-                        <h2 className="text-6xl md:text-8xl font-bold tracking-tighter text-slate-900 leading-[0.9] mb-6">
-                            Sicurezza <br />
-                            <span className="text-gray-300">certificata.</span>
-                        </h2>
-                    </div>
-                    <div className="max-w-md pb-4">
-                        <p className="text-xl text-gray-500 font-medium mb-8">
-                            Trasformiamo l'obbligo normativo in un vantaggio competitivo. Design operativo per la tua radiologia.
-                        </p>
-                        <Link href="/contatti" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-primary hover:gap-4 transition-all">
-                            Inizia il percorso <ArrowRight size={16} />
-                        </Link>
+            {/* ── Top CTA Band ─────────────────────────────── */}
+            <div className="border-b border-white/5">
+                <div className="container max-w-7xl mx-auto py-20 md:py-28 px-6">
+                    <div className="grid lg:grid-cols-2 gap-12 items-end">
+                        <div>
+                            <h2 className="font-headline text-5xl md:text-7xl text-white leading-[0.95] tracking-tight mb-4">
+                                Sicurezza<br />
+                                <span className="italic text-[#c0c8c8]">certificata.</span>
+                            </h2>
+                        </div>
+                        <div className="max-w-md lg:pb-2">
+                            <p className="text-lg text-[#707979] leading-relaxed mb-8">
+                                Trasformiamo l'obbligo normativo in un vantaggio competitivo. Design operativo per la tua radiologia.
+                            </p>
+                            <Link href="/contatti" className="inline-flex items-center gap-3 text-sm font-medium uppercase tracking-widest text-secondary hover:text-white transition-colors group">
+                                Inizia il percorso
+                                <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Voidcraft Style Card - Brand Harmonized */}
-            <div className="container max-w-7xl mx-auto bg-slate-900 text-slate-400 rounded-[2.5rem] p-8 md:p-16 overflow-hidden relative shadow-2xl shadow-primary/20 isolate">
+            {/* ── Footer Columns ───────────────────────────── */}
+            <div className="container max-w-7xl mx-auto px-6 py-16 md:py-20">
+                <div className="grid grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
 
-                {/* Brand Gradient Overlay */}
-                <div className="absolute inset-0 opacity-[0.15] bg-gradient-to-br from-primary/30 via-slate-900 to-slate-900 pointer-events-none z-0"></div>
-                {/* Noise */}
-                <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay z-0"></div>
+                    {/* Brand Column */}
+                    <div className="col-span-2 lg:col-span-4 space-y-6">
+                        <div className="flex items-center">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src="/images/logo-signature.svg"
+                                alt="Romeo Berni"
+                                className="h-10 w-auto brightness-0 invert opacity-90"
+                            />
+                        </div>
+                        <p className="text-sm text-[#707979] leading-relaxed max-w-xs">
+                            Studio Tecnico specializzato in Radioprotezione, Sicurezza Laser e Verifiche Impianti Elettromedicali.
+                        </p>
+                    </div>
 
-                {/* Giant Watermark - Primary Colored */}
-                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none z-0 selection:bg-transparent">
-                    <span className="text-[8rem] md:text-[14rem] font-bold text-primary/[0.04] leading-none tracking-tighter whitespace-nowrap">
-                        STUDIO BERNI
-                    </span>
-                </div>
-
-                <div className="grid lg:grid-cols-12 gap-12 relative z-10">
+                    {/* Menu Column */}
+                    <div className="lg:col-span-2">
+                        <h4 className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#707979] mb-6">Menu</h4>
+                        <ul className="space-y-3">
+                            {[
+                                { label: "Home", href: "/" },
+                                { label: "Chi Siamo", href: "/chi-siamo" },
+                                { label: "Servizi", href: "/servizi" },
+                                { label: "Il Metodo", href: "/metodo" },
+                                { label: "Settori", href: "/settori" },
+                            ].map((link, i) => (
+                                <li key={i}>
+                                    <Link href={link.href} className="text-sm text-[#c0c8c8] hover:text-white transition-colors">
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
                     {/* Contact Column */}
-                    <div className="lg:col-span-6 space-y-12">
-                        <div>
-                            <div className="relative w-16 h-16 mb-8 opacity-80 mix-blend-screen invert grayscale">
-                                <Image
-                                    src="/images/logo-v2.png"
-                                    alt="Studio Berni Logo"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </div>
-                            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-6 flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                                Contatto Diretto
-                            </h4>
-                            <a href="mailto:romeo.berni@virgilio.it" className="text-2xl md:text-3xl font-medium text-white hover:text-primary transition-colors block mb-2 tracking-tight">
-                                [romeo.berni@virgilio.it]
-                            </a>
-                            <a href="tel:+393389081443" className="text-3xl md:text-5xl font-medium text-white hover:text-primary transition-colors block tracking-tight">
-                                +39 338 908 1443
-                            </a>
-                            <div className="mt-6 text-base text-slate-500 space-y-1 font-medium">
-                                <p>Tel. 0521 984098</p>
-                                <p>Strada Casalunga 11 - 43123 Parma</p>
-                                <p>PEC: romeo.berni@eppi.pec.it</p>
-                            </div>
-                        </div>
+                    <div className="lg:col-span-3">
+                        <h4 className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#707979] mb-6">Contatti</h4>
+                        <ul className="space-y-3 text-sm">
+                            <li>
+                                <a href="mailto:romeo.berni@virgilio.it" className="text-[#c0c8c8] hover:text-white transition-colors">
+                                    romeo.berni@virgilio.it
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tel:+393389081443" className="text-[#c0c8c8] hover:text-white transition-colors">
+                                    +39 338 908 1443
+                                </a>
+                            </li>
+                            <li className="text-[#707979]">Tel. 0521 984098</li>
+                            <li className="text-[#707979]">Strada Casalunga 11 - 43123 Parma</li>
+                            <li className="text-[#707979]">PEC: romeo.berni@eppi.pec.it</li>
+                        </ul>
+                    </div>
 
-                        <div className="pt-4 max-w-md">
-                            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-6">Newsletter</h4>
-                            <div className="flex gap-4 border-b border-primary/20 pb-4 relative group">
-                                <input
-                                    type="email"
-                                    placeholder="La tua email *"
-                                    className="bg-transparent w-full outline-none text-white placeholder:text-slate-600 focus:placeholder:text-slate-500 transition-all font-medium text-lg"
-                                />
-                                <button className="text-primary hover:text-white whitespace-nowrap text-xs font-bold uppercase transition-colors tracking-widest">
-                                    Iscriviti →
-                                </button>
-                                <div className="absolute bottom-[-1px] left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-700 ease-in-out"></div>
-                            </div>
+                    {/* Hours Column */}
+                    <div className="lg:col-span-3">
+                        <h4 className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#707979] mb-6">Orari</h4>
+                        <ul className="space-y-3 text-sm text-[#707979]">
+                            <li>Lun — Ven: 09:00 — 18:00</li>
+                            <li>Sab — Dom: Su appuntamento</li>
+                        </ul>
+                        <div className="mt-8">
+                            <Button size="sm" href="/contatti">
+                                Richiedi Preventivo
+                            </Button>
                         </div>
                     </div>
 
-                    {/* Spacer */}
-                    <div className="lg:col-span-1"></div>
-
-                    {/* Menu Columns */}
-                    <div className="lg:col-span-5 grid grid-cols-2 gap-8 pt-2">
-                        <div className="space-y-8">
-                            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Menu</h4>
-                            <ul className="space-y-4">
-                                {[
-                                    { label: "Home", href: "/" },
-                                    { label: "Il Metodo", href: "/metodo" },
-                                    { label: "Servizi", href: "/servizi" },
-                                    { label: "Chi Siamo", href: "/chi-siamo" }
-                                ].map((link, i) => (
-                                    <li key={i}>
-                                        <Link href={link.href} className="text-lg text-slate-300 hover:text-white transition-colors block font-medium">
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div className="space-y-8">
-                            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Social</h4>
-                            <ul className="space-y-4">
-                                {[
-                                    { label: "[Linkedin]", href: "#" },
-                                    { label: "[Instagram]", href: "#" },
-                                    { label: "[Facebook]", href: "#" }
-                                ].map((link, i) => (
-                                    <li key={i}>
-                                        <a href={link.href} className="text-lg text-slate-300 hover:text-white transition-colors block font-medium">
-                                            {link.label}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
                 </div>
+            </div>
 
-                {/* Bottom Bar */}
-                <div className="flex flex-col md:flex-row justify-between items-end md:items-center mt-32 pt-8 border-t border-white/5 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-600 relative z-10">
-                    <p>© 2024 STUDIO TECNICO BERNI ROMEO — P.IVA LOGIN</p>
-                    <div className="flex gap-8 mt-6 md:mt-0">
+            {/* ── Bottom Bar ───────────────────────────────── */}
+            <div className="border-t border-white/5">
+                <div className="container max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-medium uppercase tracking-[0.15em] text-[#707979]">
+                    <p>© {new Date().getFullYear()} Studio Tecnico Berni Romeo — P.IVA</p>
+                    <div className="flex gap-8">
                         <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-                        <Link href="/legal" className="hover:text-white transition-colors">Legal</Link>
-                        <Link href="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
+                        <Link href="/cookies" className="hover:text-white transition-colors">Cookie</Link>
+                        <Link href="/termini" className="hover:text-white transition-colors">Termini</Link>
                     </div>
                 </div>
             </div>
